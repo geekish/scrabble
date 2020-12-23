@@ -16,8 +16,6 @@ const boardCoords=[
     [4,0,0,1,0,0,0,4,0,0,0,1,0,0,4],
 ]
 
-function createBoard() {
-    boardCoords.map(row=>row.map(col=>[null,row]));
+export default function createBoard() {
+    return boardCoords.map(row=>row.map(col=>[null,row]));
 }
-
-export default createBoard;

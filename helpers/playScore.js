@@ -1,3 +1,5 @@
+import letterData from './letterData';
+
 export default function playScore(myWords) {
     let totalScore=0;
     for (const word of myWords) {
