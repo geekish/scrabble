@@ -1,4 +1,6 @@
 export default function Cell(props) {
-    const [letter, setLetter] = useState(null);
-    const [bonus, setBonus] = useState(0);
+    const [letter, setLetter] = useState(props.letter);
+    const [bonus, setBonus] = useState(props.bonus);
+
+    return (<div style={props.bonus}>{letter}</div>);
 }
