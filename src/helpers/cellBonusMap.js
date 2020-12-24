@@ -1,22 +1,22 @@
 const cellBonusMap={
     0: {
-        "val": "",
+        "value": "",
         "color": "white"
     },
     1: {
-        "val": "DLS",
+        "value": "DLS",
         "color": "lightblue"
     },
     2: {
-        "val": "TLS",
+        "value": "TLS",
         "color": "purple"
     },
     3: {
-        "val": "DWS",
+        "value": "DWS",
         "color": "pink"
     },
     4: {
-        "val": "TWS",
+        "value": "TWS",
         "color": "red"
     }
 };
