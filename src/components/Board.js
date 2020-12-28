@@ -1,9 +1,16 @@
+import { useState, useEffect } from 'react';
+
 export default function Board(props) {
+    const [board, setBoard] = useState(props.board);
+
+    function handleClick(e) {
+        console.log(e.target);
+    }
     return (
         <div>
-            <table>
+            <table onClick={handleClick}>
                 <tbody>
-                    {props.board.map(row=>
+                    {board.map(row=>
                         <tr>
                             {row.map(col=><td>{col}</td>)}
                         </tr>

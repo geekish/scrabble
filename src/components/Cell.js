@@ -1,10 +1,8 @@
-import {useState, useEffect} from 'react';
+import { useState } from 'react';
 
 export default function Cell(props) {
-    const [letter, setLetter] = useState('');
-    const [value, setValue] = useState(0);
+    const [letter, setLetter] = useState(props.letter);
+    const [value, setValue] = useState(props.value);
 
-    useEffect(()=>{setValue(props.value)}, [props.value])
-
-    return (<div style={{ backgroundColor: props.color, width: '40px', height: '40px', textAlign: 'center', verticalAlign: 'middle' }}>{letter || value}</div>);
+    return (<div key={props.key} style={{ backgroundColor: props.color, width: '40px', height: '40px', textAlign: 'center', verticalAlign: 'middle' }}>{letter || value}</div>);
 }

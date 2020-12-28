@@ -20,5 +20,7 @@ const boardCoords=[
 ]
 
 export default function createBoard() {
-    return boardCoords.map(row=>row.map(col=>Cell(cellBonusMap[col])));
+    return boardCoords.map((row, i)=>row.map((col, j)=>Cell({
+        ...cellBonusMap[col],
+        'key': row*15+col})));
 }
