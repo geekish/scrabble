@@ -1,13 +1,12 @@
-function wordGetter(board, coords, vert=false) {
+export default function wordGetter(board, coords) {
+    const vert=coords[0][2]===coords[1][2];
     const wordList=[];
     for (const coord of coords) {
         const [letter, x, y] = coord;
-        if (board[x][y].letter===" ") board[x][y].letter=letter;
         const word=[{'letter': letter, 'bonus': board[x][y].bonus}];
-        console.log(word);
+        if (board[x][y].letter===" ") board[x][y].letter=letter;
         if (vert) {
             let [start,end]=[y-1,y+1];
-            console.log(start, end);
             while(start>=0 && board[x][start].letter!==" ") {
                 word.unshift(board[x][start]);
                 start--;
@@ -19,7 +18,6 @@ function wordGetter(board, coords, vert=false) {
         }
         else {
             let [start,end]=[x-1,x+1];
-            console.log(start, end);
             while(start>=0 && board[start][y].letter!==" ") {
                 word.unshift(board[start][y]);
                 start--;
@@ -29,21 +27,21 @@ function wordGetter(board, coords, vert=false) {
                 end++;
             }
         }
-        console.log(word);
         if (word.length>1) wordList.push(word);
     }
+    const mainWord=[];
     const [first, last]=[coords[0], coords[coords.length-1]];
+    let [start, end]=vert?[first[1]-1,last[1]+1]:[first[2]-1,last[2]+1];
     if (vert) {
-        let [start, end]=[first[1],last[1]];
         while(start>=0 && board[start][first[2]].letter!==" ") start--;
         while(end<=14 && board[end][first[2]].letter!==" ") end++;
-        wordList.push([...Array(end-start+1).keys()].map(ix=>board[ix+start][first[2]]));
+        for (let i=start+1;i<=end-1;i++) mainWord.push(board[i][first[2]]);
     }
     else {
-        let [start, end]=[first[2],last[2]];
         while(start>=0 && board[first[2]][start].letter!==" ") start--;
         while(end<=14 && board[first[2]][end].letter!==" ") end++;
-        wordList.push([...Array(end-start+1).keys()].map(ix=>board[first[1]][ix+start]));
+        for (let i=start+1;i<=end-1;i++) mainWord.push(board[first[1]][i]);
     }
+    wordList.push(mainWord);
     return wordList;
 }
