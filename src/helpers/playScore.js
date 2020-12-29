@@ -14,5 +14,6 @@ export default function playScore(myWords) {
         }
         totalScore+=score*multiplier;
     }
+    if (myWords.length===7) totalScore+=50;
     return totalScore;
 }
