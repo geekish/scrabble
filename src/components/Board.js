@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react';
 
 export default function Board(props) {
     const [board, setBoard] = useState(props.board);
+    const [currCell, setCurrCell] = useState(null);
 
     function handleClick(e) {
-        console.log(e.target);
+        const coords=e.target.getAttribute('coords');
+        setCurrCell(coords);
     }
+    
     return (
         <div>
             <table onClick={handleClick}>
