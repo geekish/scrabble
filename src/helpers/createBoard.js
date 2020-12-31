@@ -23,10 +23,8 @@ export default function createBoard() {
         return {
             'color': cellBonusMap[col].color,
             'value': cellBonusMap[col].value,
-            'key': i*15+j,
             'x': i,
             'y': j,
-            'coords': `${i+1}${String.fromCharCode(65+j)}`,
             'letter': null
         }
     }));

@@ -6,23 +6,21 @@ export default function Board(props) {
     const [currCell, setCurrCell] = useState({x: null, y: null, isRight: true});
 
     function handleClick(e) {
-        const x = e.target.getAttribute('x');
-        const y = e.target.getAttribute('y');
+        const x = e.target.dataset.x;
+        const y = e.target.dataset.y;
+        console.log(e.target, x, y);
         if (x===currCell.x && y===currCell.y) {
-            setCurrCell(prev=>{
-                return {
-                    ...prev,
-                    x: x,
-                    y: y
-                }
+            setCurrCell({
+                ...currCell,
+                x: x,
+                y: y
             })
+            console.log(currCell);
         }
         else {
-            setCurrCell(prev=>{
-                return {
-                    ...prev,
-                    isRight: !prev.isRight
-                }
+            setCurrCell({
+                ...currCell,
+                isRight: !currCell.isRight
             })
         }
     }
@@ -31,12 +29,10 @@ export default function Board(props) {
         if (e.shiftKey) {
             if (e.key!=='Shift'){
                 board[currCell.x][currCell.y] = e.key;
-                setCurrCell(prev=>{
-                    return {
-                        ...prev,
-                        x: prev.isRight? x+1 : x,
-                        y: prev.isRight? y: y+1
-                    }
+                setCurrCell({
+                    ...currCell,
+                    x: currCell.isRight? currCell.x+1 : currCell.x,
+                    y: currCell.isRight? currCell.y: currCell.y+1
                 })
             }
         }
@@ -48,7 +44,14 @@ export default function Board(props) {
                 <tbody>
                     {board.map(row=>
                         <tr>
-                            {row.map(col=><td>{<Cell onKeyDown={handleKeyDown} letter={col.letter} value={col.value}/>}</td>)}
+                            {row.map(col=><td>{
+                                <Cell onKeyDown={handleKeyDown} 
+                                    x={col.x} 
+                                    y={col.y} 
+                                    color={col.color} 
+                                    letter={col.letter} 
+                                    value={col.value} />}
+                                </td>)}
                         </tr>
                     )}
                 </tbody>
