@@ -1,4 +1,3 @@
-import Cell from '../components/Cell';
 import cellBonusMap from './cellBonusMap';
 
 const boardCoords=[
@@ -20,10 +19,15 @@ const boardCoords=[
 ]
 
 export default function createBoard() {
-    return boardCoords.map((row, i)=>row.map((col, j)=>Cell({
-        ...cellBonusMap[col],
-        'key': i*15+j,
-        'coords': `${i+1}${String.fromCharCode(65+j)}`,
-        'letter': null
-    })));
+    return boardCoords.map((row, i)=>row.map((col, j)=>{
+        return {
+            'color': cellBonusMap[col].color,
+            'value': cellBonusMap[col].value,
+            'key': i*15+j,
+            'x': i,
+            'y': j,
+            'coords': `${i+1}${String.fromCharCode(65+j)}`,
+            'letter': null
+        }
+    }));
 }

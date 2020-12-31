@@ -9,7 +9,7 @@ const cellBonusMap={
     },
     2: {
         "value": "TLS",
-        "color": "purple"
+        "color": "aqua"
     },
     3: {
         "value": "DWS",
