@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export default function Cell(props) {
+    const [isRight, setIsRight]=useState(true);
     const coords={x: parseInt(props.x), y: parseInt(props.y)}
     const [letter, setLetter] = useState(props.letter);
     const [value, setValue] = useState(props.value);
@@ -13,6 +14,11 @@ export default function Cell(props) {
 
     function handleChange() {
         setDisplay(getDisplay());
+    }
+
+    function handleClick() {
+        setIsRight(!isRight);
+        setValue(isRight ? "→" : "↓");
     }
 
     return (<div onChange={handleChange}

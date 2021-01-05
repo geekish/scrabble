@@ -3,36 +3,47 @@ import Cell from './Cell';
 
 export default function Board(props) {
     const [board, setBoard] = useState(props.board);
-    const [currCell, setCurrCell] = useState({x: null, y: null, isRight: true});
+    const [currCell, setCurrCell] = useState({x: 7, y: 7, isRight: true});
 
     function handleClick(e) {
-        const x = e.target.dataset.x;
-        const y = e.target.dataset.y;
-        console.log(e.target, x, y);
+        const x = parseInt(e.target.dataset.x);
+        const y = parseInt(e.target.dataset.y);
+        board[x][y].value=board[x][y].isRight ? "→" : "↓";
         if (x===currCell.x && y===currCell.y) {
-            setCurrCell({
-                ...currCell,
-                x: x,
-                y: y
-            })
-            console.log(currCell);
-        }
-        else {
             setCurrCell({
                 ...currCell,
                 isRight: !currCell.isRight
             })
         }
+        else {
+            setCurrCell({
+                ...currCell,
+                x: x,
+                y: y
+            })
+        }
+        console.log(currCell);
     }
 
     function handleKeyDown(e) {
         if (e.shiftKey) {
             if (e.key!=='Shift'){
-                board[currCell.x][currCell.y] = e.key;
+                console.log(e.key);
+                board[currCell.x][currCell.y].letter = e.key;
                 setCurrCell({
                     ...currCell,
                     x: currCell.isRight? currCell.x+1 : currCell.x,
                     y: currCell.isRight? currCell.y: currCell.y+1
+                })
+            }
+        }
+        else {
+            if (e.key==='Backspace') {
+                console.log(e.key);
+                setCurrCell({
+                    ...currCell,
+                    x: currCell.isRight? currCell.x-1 : currCell.x,
+                    y: currCell.isRight? currCell.y: currCell.y-1
                 })
             }
         }
