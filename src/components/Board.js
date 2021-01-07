@@ -32,9 +32,10 @@ export default function Board(props) {
                 board[currCell.x][currCell.y].letter = e.key;
                 setCurrCell({
                     ...currCell,
-                    x: currCell.isRight? currCell.x+1 : currCell.x,
-                    y: currCell.isRight? currCell.y: currCell.y+1
+                    x: currCell.isRight? currCell.x : Math.min(14, currCell.x+1),
+                    y: currCell.isRight? Math.min(14, currCell.y+1): currCell.y
                 })
+                console.log(currCell);
             }
         }
         else {
@@ -42,9 +43,10 @@ export default function Board(props) {
                 console.log(e.key);
                 setCurrCell({
                     ...currCell,
-                    x: currCell.isRight? currCell.x-1 : currCell.x,
-                    y: currCell.isRight? currCell.y: currCell.y-1
+                    x: currCell.isRight? currCell.x : Math.max(0, currCell.x-1),
+                    y: currCell.isRight? Math.max(0, currCell.y-1): currCell.y
                 })
+                console.log(currCell);
             }
         }
     }
@@ -56,7 +58,8 @@ export default function Board(props) {
                     {board.map(row=>
                         <tr>
                             {row.map(col=><td>{
-                                <Cell onKeyDown={handleKeyDown} 
+                                <Cell onKeyDown={handleKeyDown}
+                                    onClick={handleClick} 
                                     x={col.x} 
                                     y={col.y} 
                                     color={col.color} 

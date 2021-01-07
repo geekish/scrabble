@@ -17,6 +17,7 @@ export default function Cell(props) {
     }
 
     function handleClick() {
+        console.log("Called from Cell!");
         setIsRight(!isRight);
         setValue(isRight ? "→" : "↓");
     }
