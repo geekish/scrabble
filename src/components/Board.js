@@ -51,6 +51,17 @@ export default function Board(props) {
             }
         }
     }
+
+    function clickInfo() {
+        let isClicked = true;
+        return {isClicked};
+    }
+
+    function playInfo() {
+        const words = [];
+        let isBingo = false;
+        return {words, isBingo};
+    }
     
     return (
         <div>
@@ -60,7 +71,8 @@ export default function Board(props) {
                         <tr>
                             {row.map(col=><td>{
                                 <Cell keyDownInfo={keyDownInfo}
-                                    clickInfo={clickInfo} 
+                                    clickInfo={clickInfo}
+                                    playInfo={playInfo} 
                                     x={col.x} 
                                     y={col.y} 
                                     color={col.color} 
