@@ -51,10 +51,6 @@ export default function Board(props) {
             }
         }
     }
-
-    function clickInfo() {
-
-    }
     
     return (
         <div>
