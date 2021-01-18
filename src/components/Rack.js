@@ -13,6 +13,14 @@ export default function Rack(props) {
         setRack(indices.map(ix=>rack[ix]));
     }
 
+    function removePlayedTiles() {
+        setRack(rack.filter(tile=>!props.tilesPlayed.find(tilePlayed=>tilePlayed.letter===tile.letter)));
+    }
+
+    function addDrawnTiles() {
+        setRack(rack.concat(props.newTiles));
+    }
+
     return (
         <div className='rackHolder'>
             {rack}
