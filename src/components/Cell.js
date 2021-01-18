@@ -17,7 +17,6 @@ export default function Cell(props) {
     }
 
     function handleClick() {
-        console.log("Called from Cell!");
         setIsClicked(true);
         setIsRight(!isRight);
         setValue(isRight ? "→" : "↓");
@@ -25,7 +24,6 @@ export default function Cell(props) {
     }
 
     function handleKeyDown() {
-        console.log("Function was called!");
         setLetter(props.keyDownInfo);
         setDisplay(getDisplay());
     }

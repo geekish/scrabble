@@ -21,7 +21,6 @@ export default function Board(props) {
                 y: y
             })
         }
-        console.log(currCell);
     }
 
     function handleKeyDown(e) {
@@ -32,18 +31,15 @@ export default function Board(props) {
                     x: currCell.isRight? currCell.x : Math.min(14, currCell.x+1),
                     y: currCell.isRight? Math.min(14, currCell.y+1): currCell.y
                 })
-                console.log(currCell);
             }
         }
         else {
             if (e.key==='Backspace') {
-                console.log(e.key);
                 setCurrCell({
                     ...currCell,
                     x: currCell.isRight? currCell.x : Math.max(0, currCell.x-1),
                     y: currCell.isRight? Math.max(0, currCell.y-1): currCell.y
                 })
-                console.log(currCell);
             }
         }
     }
