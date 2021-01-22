@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import letterData from '../letterData';
+import letterData from '../helpers/letterData';
 
 export default function Tile(props) {
     const [letter, setLetter] = useState(props.letter);
