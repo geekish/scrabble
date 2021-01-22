@@ -12,8 +12,7 @@ export default function Tile(props) {
             width: '40px',
             height: '40px'
         }}>
-            {letter}
-            {value}
+            {letter} ({value})
         </div>
     )
 

@@ -89,11 +89,11 @@ const letterData = {
     },
     'V': {
         'frequency': 2,
-        'value': 1
+        'value': 4
     },
     'W': {
         'frequency': 2,
-        'value': 1
+        'value': 4
     },
     'X': {
         'frequency': 1,

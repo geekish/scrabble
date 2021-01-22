@@ -6,15 +6,18 @@ import Bag from './components/Bag';
 import Player from './components/Player';
 
 function startGame() {
-    const racks = [];
+  
 }
 
 function App() {
+  const bag = createBag();
+  const board = createBoard();
+  
   return (
     <div className="App">
-      <h2>Tiles Remaining: {}</h2>
-      <Board board={createBoard()} />
-      <Bag bag={createBag()} />
+      <h2>Tiles Remaining: {bag.length}</h2>
+      <Board board={board} />
+      <Bag bag={bag} />
       <Player name={'Jack Overby'}></Player>
       <Player name={'Jason Vaysberg'}></Player>
     </div>

@@ -1,8 +1,9 @@
-import createBag from '../helpers/createBag';
 import { useState } from 'react';
 
 export default function Bag(props) {
     const [bagTiles, setBagTiles] = useState(props.bag);
+    const bagLength = bagTiles.length;
+    const bagLenRoot = Math.floor(bagLength ** 0.5);
 
     function dealTiles(numberOfTiles, playerId) {
         const tilesDealtObj = {
@@ -15,6 +16,6 @@ export default function Bag(props) {
         return tilesDealtObj;
     }
 
-    return <div></div>;
+    return <div style={{display: 'grid'}}>{bagTiles}</div>;
 
 }
