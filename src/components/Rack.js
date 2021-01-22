@@ -1,8 +1,8 @@
-import Tile from './tile';
+import Tile from './Tile';
 import { useState } from 'react';
 
 export default function Rack(props) {
-    const [rack, setRack] = useState(props.tiles);
+    const [rack, setRack] = useState(props.rack);
 
     function shuffleRack() {
         const N = rack.length;
@@ -22,7 +22,12 @@ export default function Rack(props) {
     }
 
     return (
-        <div className='rackHolder'>
+        <div className='rackHolder'
+            style={{
+                "display": "grid",
+                "gridTemplateColumns": "repeat(7, 50px)",
+            }}
+        >
             {rack}
         </div>
     )

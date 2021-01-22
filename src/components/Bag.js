@@ -2,8 +2,6 @@ import { useState } from 'react';
 
 export default function Bag(props) {
     const [bagTiles, setBagTiles] = useState(props.bag);
-    const bagLength = bagTiles.length;
-    const bagLenRoot = Math.floor(bagLength ** 0.5);
 
     function dealTiles(numberOfTiles, playerId) {
         const tilesDealtObj = {
@@ -16,6 +14,17 @@ export default function Bag(props) {
         return tilesDealtObj;
     }
 
-    return <div style={{display: 'grid'}}>{bagTiles}</div>;
+    return (
+        <div>
+            <h2>Tiles Remaining: {bagTiles.length}</h2>
+            <div style={{
+                "display": 'grid',
+                "gridTemplateColumns": "repeat(10, 60px)",
+                "gridTemplateRows": "repeat(10, 60px)",
+                // "rowGap": "2px",
+                // "columnGap": "2px",
+            }}>{bagTiles}</div>
+        </div>
+    );
 
 }
