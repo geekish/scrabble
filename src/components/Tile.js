@@ -3,11 +3,6 @@ import { useState } from "react";
 export default function Tile(props) {
     const letter = props.letter;
     const value = props.value;
-    const [isVisible, setIsVisible] = useState(true);
-
-    function toggleVisible() {
-        setIsVisible(!isVisible);
-    }
 
     function divver(str="", size=0) {
         return <div style={{
@@ -28,7 +23,7 @@ export default function Tile(props) {
             "width": "50px",
             "height": "50px",
         }}>
-            {isVisible ? divver(letter, 30) :
+            {props.isVisible ? divver(letter, 30) :
             null}
         </div>
     )

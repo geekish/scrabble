@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Tile from './Tile';
 
 export default function Bag(props) {
     const [bagTiles, setBagTiles] = useState(props.bag);
@@ -23,7 +24,11 @@ export default function Bag(props) {
                 "gridTemplateRows": "repeat(10, 60px)",
                 // "rowGap": "2px",
                 // "columnGap": "2px",
-            }}>{bagTiles}</div>
+            }}>{bagTiles.map(bagTile=>{
+                        return <Tile letter={bagTile.letter} value={bagTile.value} isVisible={bagTile.isVisible} />
+                    }
+                )}
+            </div>
         </div>
     );
 

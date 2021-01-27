@@ -8,17 +8,17 @@ import Player from './components/Player';
 function App() {
   const bag = createBag();
   const board = createBoard();
+  let playerUp = 0;
   const playerInfo = {
-    playerUp: 0,
     0: {
-      name: 'Jack Overby',
+      name: "Jack Overby",
       rack: bag.splice(0,7),
-      score: 0
+      score: 0,
     },
     1: {
-      name: 'Jason Vaysberg',
+      name: "Jason Vaysberg",
       rack: bag.splice(0, 7),
-      score: 0
+      score: 0,
     }
   }
 
@@ -32,8 +32,8 @@ function App() {
 
   return (
     <div className="App">
-      <Player player={playerInfo[0]}></Player>
-      <Player player={playerInfo[1]}></Player>
+      <Player player={playerInfo[0]} isVisible={!(playerUp % 2)}></Player>
+      <Player player={playerInfo[1]} isVisible={!!(playerUp % 2)}></Player>
       <Board board={board} />
       <Bag bag={bag} />
     </div>
