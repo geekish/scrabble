@@ -117,6 +117,6 @@ export default function createBag() {
             value: letterData[key].value
         }
     });
-    for (let i=bag.length-1; i>=0; i--) bag.push(bag.splice(Math.floor(Math.random()*i),1)[0]);
+    for (let i=bag.length; i>0; i--) bag.push(bag.splice(Math.floor(Math.random()*i),1)[0]);
     return bag;
 }

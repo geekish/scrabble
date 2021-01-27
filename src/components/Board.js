@@ -2,30 +2,35 @@ import { useState } from 'react';
 import Cell from './Cell';
 
 export default function Board(props) {
-    const board = props.board;
+    const [board, setBoard] = useState(props.board);
     const [currCell, setCurrCell] = useState({x: 7, y: 7, isRight: true});
 
     function handleClick(e) {
         const x = parseInt(e.target.dataset.x);
         const y = parseInt(e.target.dataset.y);
         if (x===currCell.x && y===currCell.y) {
-            setCurrCell({
-                ...currCell,
-                isRight: !currCell.isRight
+            setCurrCell(prev=>{
+                return {
+                    ...currCell,
+                    isRight: !prev.isRight
+                }
             })
         }
         else {
             setCurrCell({
-                ...currCell,
-                x: x,
-                y: y
-            })
+                x: x, 
+                y: y, 
+                isRight: true
+            });
         }
     }
 
     function handleKeyDown(e) {
         if (e.shiftKey) {
-            if (e.key!=='Shift'){
+            if (e.key!=='Shift') {
+                const boardCopy = JSON.parse(JSON.stringify(board));
+                boardCopy[currCell.x][currCell.y]["letter"] = e.key;
+                setBoard(boardCopy);
                 setCurrCell({
                     ...currCell,
                     x: currCell.isRight? currCell.x : Math.min(14, currCell.x+1),
@@ -43,25 +48,6 @@ export default function Board(props) {
             }
         }
     }
-
-    function keyDownInfo(e) {
-        if (e.shiftKey) {
-            if (e.key!=='Shift'){
-                return e.key;
-            }
-        }
-    }
-
-    function clickInfo() {
-        let isClicked = true;
-        return {isClicked};
-    }
-
-    function playInfo() {
-        const words = [];
-        let isBingo = false;
-        return {words, isBingo};
-    }
     
     return (
         <div>
@@ -69,16 +55,26 @@ export default function Board(props) {
                 <tbody>
                     {board.map(row=>
                         <tr>
-                            {row.map(col=><td>{
-                                <Cell keyDownInfo={keyDownInfo}
-                                    clickInfo={clickInfo}
-                                    playInfo={playInfo} 
-                                    x={col.x} 
-                                    y={col.y} 
-                                    color={col.color} 
-                                    letter={col.letter} 
-                                    value={col.value} />}
-                                </td>)}
+                            {row.map(col=>{
+                                return (
+                                <td>
+                                    <div tabIndex={0}
+                                        style={{
+                                            backgroundColor: col.color,
+                                            width: "40px",
+                                            height: "40px", 
+                                            textAlign: "center", 
+                                            verticalAlign: "middle",
+                                            lineHeight: "40px"
+                                        }}
+                                        data-x={col.x}
+                                        data-y={col.y}
+                                    >
+                                        {col.letter || col.value}
+                                    </div>
+                                </td>
+                            )
+                            })}
                         </tr>
                     )}
                 </tbody>

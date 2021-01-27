@@ -8,21 +8,14 @@ export default function Cell(props) {
     const [display, setDisplay] = useState(props.value)
     const [isClicked, setIsClicked]=useState(false);
 
-    // function getDisplay() {
-    //     if (isClicked) return value;
-    //     else {
-    //         if (letter) return letter;
-    //         else return coords.x===7 && coords.y===7?"★":value;
-    //     }
-    // }
-
     function handleClick() {
         setIsClicked(true);
         setPosition((position + 1) % 3);
         setDisplay([value, "→", "↓"][position]);
     }
 
-    function handleKeyDown() {
+    function handleKeyDown(e) {
+        console.log(e);
         setLetter(props.keyDownInfo);
     }
 
