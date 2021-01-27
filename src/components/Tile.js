@@ -13,8 +13,13 @@ export default function Tile(props) {
         }}>{str}</div>
     }
 
+    function handleClick() {
+        console.log(letter, value);
+    }
+
     return (
-        <div style={{
+        <div onClick={handleClick}
+        style={{
             "borderColor": "black",
             "display": "grid",
             // "gridTemplateColumns": "40px 10px",
