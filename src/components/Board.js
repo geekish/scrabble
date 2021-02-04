@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Cell from './Cell';
 
 export default function Board(props) {
     const [board, setBoard] = useState(props.board);
@@ -28,8 +27,10 @@ export default function Board(props) {
     function handleKeyDown(e) {
         if (e.shiftKey) {
             if (e.key!=='Shift') {
+                const [x, y] = [currCell.x, currCell.y];
                 const boardCopy = JSON.parse(JSON.stringify(board));
-                boardCopy[currCell.x][currCell.y]["letter"] = e.key;
+                boardCopy[x][y]["letter"] = e.key;
+                boardCopy[x][y]["color"] = "tan";
                 setBoard(boardCopy);
                 setCurrCell({
                     ...currCell,

@@ -31,11 +31,14 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Player player={playerInfo[0]} isVisible={!(playerUp % 2)}></Player>
-      <Player player={playerInfo[1]} isVisible={!!(playerUp % 2)}></Player>
-      <Board board={board} />
-      <Bag bag={bag} />
+    <div className="App"
+      display="grid"
+      gridTemplateColumns="50% 50%"
+      gridTemplateRows="50% 50%">
+      {[<Player player={playerInfo[0]} isVisible={!(playerUp % 2)}></Player>,
+      <Player player={playerInfo[1]} isVisible={!!(playerUp % 2)}></Player>,
+      <Board board={board} />,
+      <Bag bag={bag} />]}
     </div>
   );
 }
