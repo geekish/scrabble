@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import type { Point } from "../types";
+
+type Cell = Point & { isRight: boolean };
 
 export default function Board(props) {
     const [board, setBoard] = useState(props.board);
-    const [currCell, setCurrCell] = useState({x: 7, y: 7, isRight: true});
+    const [currCell, setCurrCell] = useState<Cell>({x: 7, y: 7, isRight: true});
 
     function handleClick(e) {
         const x = parseInt(e.target.dataset.x);

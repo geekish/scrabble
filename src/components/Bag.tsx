@@ -4,7 +4,7 @@ import Tile from './Tile';
 export default function Bag(props) {
     const [bagTiles, setBagTiles] = useState(props.bag);
 
-    function dealTiles(numberOfTiles, playerId) {
+    function dealTiles(numberOfTiles: number, playerId: number) {
         const tilesDealtObj = {
             playerId,
             tiles: []
